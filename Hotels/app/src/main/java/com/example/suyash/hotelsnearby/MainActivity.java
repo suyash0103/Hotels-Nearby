@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
     private int RC_SIGN_IN_1 = 1;
-    private int RC_SIGN_IN_2 = 1;
+    private int RC_SIGN_IN_2 = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        updateUI(account);
 
         findViewById(R.id.sign_in_button1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,12 +41,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.sign_in_button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signIn(2);
+            }
+        });
+
 
     }
 
     private void signIn(int a) {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN_1);
+        if(a == 1)
+        {
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN_1);
+        }
+        else
+        {
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN_2);
+        }
     }
 
     @Override
@@ -60,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task, 1);
+        }
+        else if(requestCode == RC_SIGN_IN_2)
+        {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task, 2);
         }
     }
 
@@ -80,7 +99,14 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(GoogleSignInAccount account, int a) {
         if (account != null && a == 1) {
             Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
-            Intent AfterLoginIntent = new Intent(MainActivity.this, AfterLogin.class);
+            Intent AfterLoginIntent = new Intent(MainActivity.this, Owner.class);
+            startActivity(AfterLoginIntent);
+            finish();
+        }
+        else if(account != null && a == 2)
+        {
+            Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
+            Intent AfterLoginIntent = new Intent(MainActivity.this, User.class);
             startActivity(AfterLoginIntent);
             finish();
         }
