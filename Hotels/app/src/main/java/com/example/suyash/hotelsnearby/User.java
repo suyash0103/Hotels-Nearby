@@ -42,16 +42,15 @@ public class User extends AppCompatActivity implements LocationListener,
 
     GoogleApiClient gac;
     LocationRequest locationRequest;
-//    TextView tvLatitude, tvLongitude, tvTime;
+
+    private String API_KEY = " AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
+    private String latitude, longitude;
 
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-//        tvLatitude = (TextView) findViewById(R.id.tvLatitude);
-//        tvLongitude = (TextView) findViewById(R.id.tvLongitude);
-//        tvTime = (TextView) findViewById(R.id.tvTime);
 
         isGooglePlayServicesAvailable();
 
@@ -145,10 +144,9 @@ public class User extends AppCompatActivity implements LocationListener,
 
     private void updateUI(Location loc) {
         Log.d(TAG, "updateUI");
-//        tvLatitude.setText(Double.toString(loc.getLatitude()));
-//        tvLongitude.setText(Double.toString(loc.getLongitude()));
-//        tvTime.setText(DateFormat.getTimeInstance().format(loc.getTime()));
-        Toast.makeText(User.this, Double.toString(loc.getLatitude()) + "  " + Double.toString(loc.getLongitude()), Toast.LENGTH_LONG).show();
+        latitude = Double.toString(loc.getLatitude());
+        longitude = Double.toString(loc.getLongitude());
+//        Toast.makeText(User.this, Double.toString(loc.getLatitude()) + "  " + Double.toString(loc.getLongitude()), Toast.LENGTH_LONG).show();
     }
 
     private boolean isLocationEnabled() {
@@ -226,4 +224,3 @@ public class User extends AppCompatActivity implements LocationListener,
                 });
     }
 }
-
