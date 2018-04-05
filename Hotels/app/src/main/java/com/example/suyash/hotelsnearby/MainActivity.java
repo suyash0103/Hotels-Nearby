@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             handleSignInResult(task, 2);
         }
     }
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask, int a) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             updateUI(null, 0);
         }
     }
+
     private void updateUI(GoogleSignInAccount account, int a) {
         if (account != null && a == 1) {
             Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
