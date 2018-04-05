@@ -16,9 +16,11 @@ import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
 
-    GoogleSignInClient mGoogleSignInClient;
+    public static GoogleSignInClient mGoogleSignInClient;
     private int RC_SIGN_IN_1 = 1;
     private int RC_SIGN_IN_2 = 2;
+
+    int a = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signIn();
+                a = 1;
             }
         });
 
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signIn();
+                a = 2;
             }
         });
 
@@ -79,13 +83,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        if (account != null) {
+        if (account != null && a == 2) {
             Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
             Intent AfterLoginIntent = new Intent(MainActivity.this, User.class);
             startActivity(AfterLoginIntent);
             finish();
         }
-
+        else if(account != null && a == 1)
+        {
+            Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
+            Intent AfterLoginIntent = new Intent(MainActivity.this, Owner.class);
+            startActivity(AfterLoginIntent);
+            finish();
+        }
     }
 
 }
