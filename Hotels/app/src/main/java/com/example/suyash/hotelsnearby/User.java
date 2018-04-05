@@ -110,6 +110,7 @@ public class User extends AppCompatActivity implements LocationListener,
     @Override
     protected void onStop() {
         gac.disconnect();
+        index = 0;
         super.onStop();
     }
 
