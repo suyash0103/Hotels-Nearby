@@ -20,6 +20,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -43,8 +47,10 @@ public class User extends AppCompatActivity implements LocationListener,
     GoogleApiClient gac;
     LocationRequest locationRequest;
 
-    private String API_KEY = " AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
+    private String API_KEY = "AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
     private String latitude, longitude;
+
+    int index = 0;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -66,6 +72,33 @@ public class User extends AppCompatActivity implements LocationListener,
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+
+        sendLocation();
+    }
+
+    public void sendLocation()
+    {
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=20000&type=restaurant&key=" + API_KEY;
+        Log.v("BBBBBBBBB", latitude + "XXX" + longitude);
+//        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.0066525,74.7966876&radius=20000&type=restaurant&key=AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.v("AAAAAAAAAAAAA", "AAAAAAAAAAAAAAAA");
+                        Log.d("Response", response);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        );
+        SingletonRequestQueue.getInstance(User.this).addToRequestQueue(stringRequest);
     }
 
     @Override
@@ -146,6 +179,7 @@ public class User extends AppCompatActivity implements LocationListener,
         Log.d(TAG, "updateUI");
         latitude = Double.toString(loc.getLatitude());
         longitude = Double.toString(loc.getLongitude());
+
 //        Toast.makeText(User.this, Double.toString(loc.getLatitude()) + "  " + Double.toString(loc.getLongitude()), Toast.LENGTH_LONG).show();
     }
 
