@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask, int a) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, show authenticated UI
             updateUI(account, a);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
