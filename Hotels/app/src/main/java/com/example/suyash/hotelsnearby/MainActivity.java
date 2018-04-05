@@ -37,31 +37,23 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.sign_in_button1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn(1);
+                signIn();
             }
         });
 
         findViewById(R.id.sign_in_button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn(2);
+                signIn();
             }
         });
 
 
     }
 
-    private void signIn(int a) {
-        if(a == 1)
-        {
+    private void signIn() {
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN_1);
-        }
-        else
-        {
-            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, RC_SIGN_IN_2);
-        }
     }
 
     @Override
@@ -70,41 +62,30 @@ public class MainActivity extends AppCompatActivity {
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN_1) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task, 1);
-        }
-        else if(requestCode == RC_SIGN_IN_2)
-        {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task, 2);
+            handleSignInResult(task);
         }
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask, int a) {
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            updateUI(account, a);
+            updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("Google Sign In", "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null, 0);
+            updateUI(null);
         }
     }
 
-    private void updateUI(GoogleSignInAccount account, int a) {
-        if (account != null && a == 1) {
-            Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
-            Intent AfterLoginIntent = new Intent(MainActivity.this, Owner.class);
-            startActivity(AfterLoginIntent);
-            finish();
-        }
-        else if(account != null && a == 2)
-        {
+    private void updateUI(GoogleSignInAccount account) {
+        if (account != null) {
             Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
             Intent AfterLoginIntent = new Intent(MainActivity.this, User.class);
             startActivity(AfterLoginIntent);
             finish();
         }
+
     }
 
 }

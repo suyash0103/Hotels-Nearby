@@ -71,7 +71,7 @@ public class User extends AppCompatActivity implements GoogleApiClient.Connectio
     private void displayLocation() {
 
         showPhoneStatePermission();
-        
+
         if (mLastLocation != null) {
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
