@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             handleSignInResult(task, 2);
         }
     }
-
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask, int a) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
