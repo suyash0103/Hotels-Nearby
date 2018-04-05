@@ -28,6 +28,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 import android.Manifest;
 
 public class Owner extends AppCompatActivity implements LocationListener,
@@ -47,14 +48,14 @@ public class Owner extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_owner);
 //        tvLatitude = (TextView) findViewById(R.id.tvLatitude);
 //        tvLongitude = (TextView) findViewById(R.id.tvLongitude);
 //        tvTime = (TextView) findViewById(R.id.tvTime);
 
         isGooglePlayServicesAvailable();
 
-        if(!isLocationEnabled())
+        if (!isLocationEnabled())
             showAlert();
 
         locationRequest = new LocationRequest();
@@ -117,7 +118,7 @@ public class Owner extends AppCompatActivity implements LocationListener,
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(Owner.this, "Permission was granted!", Toast.LENGTH_LONG).show();
 
-                    try{
+                    try {
                         LocationServices.FusedLocationApi.requestLocationUpdates(
                                 gac, locationRequest, this);
                     } catch (SecurityException e) {
@@ -132,7 +133,8 @@ public class Owner extends AppCompatActivity implements LocationListener,
     }
 
     @Override
-    public void onConnectionSuspended(int i) {}
+    public void onConnectionSuspended(int i) {
+    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -193,6 +195,35 @@ public class Owner extends AppCompatActivity implements LocationListener,
                     }
                 });
         dialog.show();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.logout, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                signOut();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void signOut() {
+        MainActivity.mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(Owner.this, "Logged Out", Toast.LENGTH_SHORT).show();
+                        Intent AfterLoginIntent = new Intent(Owner.this, MainActivity.class);
+                        startActivity(AfterLoginIntent);
+                        finish();
+                    }
+                });
     }
 }
 
