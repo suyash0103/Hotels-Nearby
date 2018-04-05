@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +57,8 @@ public class User extends AppCompatActivity implements GoogleApiClient.Connectio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // First we need to check availability of play services
         if (checkPlayServices()) {
@@ -93,7 +96,7 @@ public class User extends AppCompatActivity implements GoogleApiClient.Connectio
                 requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_LOCATION);
             }
         } else {
-            Toast.makeText(User.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(User.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -121,7 +124,7 @@ public class User extends AppCompatActivity implements GoogleApiClient.Connectio
                     mLastLocation = LocationServices.FusedLocationApi
                             .getLastLocation(mGoogleApiClient);
                 } else {
-                    Toast.makeText(User.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(User.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
                     permission = 0;
                 }
         }
