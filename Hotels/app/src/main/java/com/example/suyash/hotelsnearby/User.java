@@ -85,26 +85,6 @@ public class User extends AppCompatActivity implements LocationListener,
     {
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=20000&type=restaurant&key=" + API_KEY;
         Log.v("BBBBBBBBB", latitude + "XXX" + longitude);
-
-        StringRequest stringRequest1 = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.v("AAAAAAAAAAAAA", "AAAAAAAAAAAAAAAA");
-                        Log.d("Response", response);
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.Response", error.toString());
-                    }
-                }
-        );
-        SingletonRequestQueue.getInstance(User.this).addToRequestQueue(stringRequest1);
-
 //        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.0066525,74.7966876&radius=20000&type=restaurant&key=AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>()
@@ -113,12 +93,12 @@ public class User extends AppCompatActivity implements LocationListener,
                     public void onResponse(JSONObject response) {
                         Log.v("AAAAAAAAAAAAA", "AAAAAAAAAAAAAAAA");
                         Log.d("Response", response.toString());
-//                        try {
-//
-//                            Log.v("CCCCCCCCCCCCC", obj.toString());
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            JSONArray obj = response.getJSONArray("results");
+                            Log.v("CCCCCCCCCCC", obj.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener()

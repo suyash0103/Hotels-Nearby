@@ -1,0 +1,93 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CrQCIwEAAEm8_vkIdlQnhXB38kMuejWgaNibs5bAXpwTKPsnkkqbs8wEDrrcaG3Wt55vfN_PaSqs3XbxMjCt53zrI-EYXVLqMDNxIALI_TT4IpSYh3XNqGDaW5YHrye8S9dZ7-lWPxXi9iCvQZ0x-Nq8yORlTiHK0pTjtd-uRc2SLb5aJQINbvDJSzSZgtTL3mnooP1g43ozxK4SlCLUAg3mUDWyOdEGYeFExdOuqpGwseuU4Eyu2-e95eXpKKybHkijLFhKlVdPFTA-VWIMeOn6OTSiFxsGzIgiWTVEDvtZpEL5FpFmRs4hwjaiU54lJg3DbOlQoIp8EyrAOURws6SfbYc2NKMfA4qcdG83SoPaNEnnFrqGgBOajAktcumYsPTX4oiHDEMV2CL2OLXQMdnMsytSt1sSEAoCCn58QA4W30Z5dwLpXF0aFEeARoir-ANx6RKqGlp7fJVn1SVl",
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": 12.871371,
+          "lng": 74.856843
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 12.8727199802915,
+            "lng": 74.85819198029151
+          },
+          "southwest": {
+            "lat": 12.8700220197085,
+            "lng": 74.85549401970849
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restauran-.png",
+      "id": "6c4f84843e85d9e86fef11da40ca44b48c4abb15",
+      "name": "Domino's Pizza",
+      "opening_hours": {
+        "open_now": false,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 516,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114648938092180894461/photos\">Subbu Dharambhat</a>"
+          ],
+          "photo_reference": "CmRaAAAABFaAhru7oywdSFL_MOkwKpxa1v0HV_qSo207GA-6ufuBcP9uZaf_xpQDtu5ZelGGYaCCyBCCCh4caKRwZWb-Ot_bUBMrxgv_JLFjH9wJ7f-aftPm4Y5hSC6EIdOqnMT1EhBHv6CH0-4B6qINMpYKpllHGhQf3ykLlIPRUkJ_PrJbz7K665pvlg",
+          "width": 1080
+        }
+      ],
+      "place_id": "ChIJ66Xq-zNaozsRcPqrdKIUvcA",
+      "price_level": 1,
+      "rating": 4.1,
+      "reference": "CmRSAAAA_rDcyD3VdExk8d0QcNgtTH9nw88TjPt0oughzuNBtwTDRSCUsUS_GQr1AOCe1yGy9BH9emx0O7-Dm6qCpN-DJCfNm2mrnCJIKVfb1UUaSIxCbii-R-BPVIF4UZV2T4gTEhBaFF5wtgOQOahJgTIblz9gGhRxpJCirm9WkGCQpLfE6RBbu46QdA",
+      "scope": "GOOGLE",
+      "types": [
+        "meal_delivery",
+        "meal_takeaway",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "15-21-1266/3, S10, Legacy Commercial Complex, 3rd Cross Road, Lower Bendoorwell Road, Mangaluru"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 12.8738868,
+          "lng": 74.85279059999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 12.8752357802915,
+            "lng": 74.85413958029149
+          },
+          "southwest": {
+            "lat": 12.8725378197085,
+            "lng": 74.85144161970848
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+      "id": "c5a480c08794ea4e962539a17487b6acfae54d32",
+      "name": "Hotel Prestige",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 1249,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109267648687310982400/photos\">Hotel Prestige</a>"
+          ],
+          "photo_reference": "CmRaAAAAMOXJrym8S2jHhVtrKlEtVUna8CBbjhXjy7BEGgvGgwHzPtc4bxFp8dp-z1nyQmFzZCQSC4h1olHk471TOOlY8E8wsDJ4YuhVpcvG7ERILvneIG3meO4ZY63EF8p5RygjEhCj3QYJCbwYB2EYDl3OPyowGhTKugT5qmeMTXoNMd5elxWlkgA4Rw",
+          "width": 2048
+        }
+      ],
+      "place_id": "ChIJsYldSjZaozsRc5cfyM_1qCQ",
+      "rating": 3.9,
+      "reference": "CmRRAAAAP7BUAqrxV-LUQFIwRwpnqLk-q1eZfXFdTsRxX2shoKHhaLUn-ZgVU59hnb2KAQ-fwfYQ7OOMGnALgqid4DEsidp9CsotPW2ffvB15yI5sMMkVC5"
+    }
+  ]
+}
