@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -34,6 +35,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import android.Manifest;
+
+import org.json.JSONObject;
 
 public class User extends AppCompatActivity implements LocationListener,
         GoogleApiClient.ConnectionCallbacks,
@@ -81,13 +84,13 @@ public class User extends AppCompatActivity implements LocationListener,
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=20000&type=restaurant&key=" + API_KEY;
         Log.v("BBBBBBBBB", latitude + "XXX" + longitude);
 //        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.0066525,74.7966876&radius=20000&type=restaurant&key=AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>()
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>()
                 {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
                         Log.v("AAAAAAAAAAAAA", "AAAAAAAAAAAAAAAA");
-                        Log.d("Response", response);
+                        Log.d("Response", response.toString());
                     }
                 },
                 new Response.ErrorListener()
