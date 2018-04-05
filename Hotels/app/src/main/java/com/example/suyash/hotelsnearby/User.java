@@ -73,7 +73,7 @@ public class User extends AppCompatActivity implements LocationListener,
                 .addApi(LocationServices.API)
                 .build();
 
-        sendLocation();
+//        sendLocation();
     }
 
     public void sendLocation()
@@ -149,7 +149,6 @@ public class User extends AppCompatActivity implements LocationListener,
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(User.this, "Permission was granted!", Toast.LENGTH_LONG).show();
-
                     try {
                         LocationServices.FusedLocationApi.requestLocationUpdates(
                                 gac, locationRequest, this);
@@ -176,10 +175,12 @@ public class User extends AppCompatActivity implements LocationListener,
     }
 
     private void updateUI(Location loc) {
+        index++;
         Log.d(TAG, "updateUI");
         latitude = Double.toString(loc.getLatitude());
         longitude = Double.toString(loc.getLongitude());
-
+        if(index == 1)
+            sendLocation();
 //        Toast.makeText(User.this, Double.toString(loc.getLatitude()) + "  " + Double.toString(loc.getLongitude()), Toast.LENGTH_LONG).show();
     }
 
