@@ -3,11 +3,13 @@ package com.example.suyash.hotelsnearby;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class HotelDetails extends AppCompatActivity {
 
     TextView name, vicinity, distance;
+    Button navigate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,8 @@ public class HotelDetails extends AppCompatActivity {
         name = (TextView) findViewById(R.id.name);
         vicinity = (TextView) findViewById(R.id.vicinity);
         distance = (TextView) findViewById(R.id.distance);
+
+        navigate = (Button) findViewById(R.id.navigate);
 
         Intent intent = getIntent();
 

@@ -156,7 +156,7 @@ public class User extends AppCompatActivity implements LocationListener,
 
                                 Intent intent = new Intent(User.this, HotelDetails.class);
                                 intent.putExtra("Hotel", hotel);
-
+                                startActivity(intent);
                             }
                         });
 

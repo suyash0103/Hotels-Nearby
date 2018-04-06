@@ -44,4 +44,9 @@ public class Hotel implements Serializable {
         return dist;
     }
 
+    public String getPlaceId()
+    {
+        return place_id;
+    }
+
 }
