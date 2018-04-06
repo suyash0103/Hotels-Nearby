@@ -40,6 +40,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class User extends AppCompatActivity implements LocationListener,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -57,11 +59,15 @@ public class User extends AppCompatActivity implements LocationListener,
 
     int index = 0;
 
+    ArrayList<Hotel> hotelsArray;
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        hotelsArray = new ArrayList<>();
 
         isGooglePlayServicesAvailable();
 
@@ -97,11 +103,21 @@ public class User extends AppCompatActivity implements LocationListener,
                             JSONArray obj = response.getJSONArray("results");
                             Log.v("CCCCCCCCCCC", obj.toString());
                             String plc1, plc2;
+                            Log.v("Length", obj.length() + "");
                             for(int i = 0; i < obj.length(); i++)
                             {
                                 JSONObject obj1 = obj.getJSONObject(i);
-                                plc1 = obj1.getString("place_id");
-                                Log.v("DDDDDDDDDDDD", plc1);
+                                String name, place_id, vicinity;
+                                int price_level, rating;
+                                Boolean open_now;
+                                name = obj1.getString("name");
+                                place_id = obj1.getString("place_id");
+                                price_level = obj1.getInt("price_level");
+                                rating = obj1.getInt("rating");
+                                open_now = obj1.getBoolean("open_now");
+
+                                Hotel hotel = new Hotel(name, open_now, place_id, price_level, rating);
+                                hotelsArray.add(hotel);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
