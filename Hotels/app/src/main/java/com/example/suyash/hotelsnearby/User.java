@@ -18,6 +18,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -85,11 +88,14 @@ public class User extends AppCompatActivity implements LocationListener,
                 .build();
 
 //        sendLocation();
+
+        // setting up the array adapter
+
     }
 
     public void sendLocation()
     {
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=20000&type=restaurant&key=" + API_KEY;
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=500&type=restaurant&key=" + API_KEY;
         Log.v("BBBBBBBBB", latitude + "XXX" + longitude);
 //        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.0066525,74.7966876&radius=20000&type=restaurant&key=AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -112,16 +118,31 @@ public class User extends AppCompatActivity implements LocationListener,
                                 Boolean open_now;
                                 name = obj1.getString("name");
                                 place_id = obj1.getString("place_id");
-                                price_level = obj1.getInt("price_level");
-                                rating = obj1.getInt("rating");
-                                open_now = obj1.getBoolean("open_now");
+//                                price_level = obj1.getInt("price_level");
+//                                rating = obj1.getInt("rating");
 
-                                Hotel hotel = new Hotel(name, open_now, place_id, price_level, rating);
+//                                JSONObject opening_hours = obj1.getJSONObject("opening_hours");
+//                                open_now = opening_hours.getBoolean("open_now");
+
+                                Hotel hotel = new Hotel(name, true, place_id, 0);
                                 hotelsArray.add(hotel);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                        HotelAdapter itemsAdapter= new HotelAdapter(User.this, hotelsArray);
+
+                        // finding the listView and setting the adapter to it
+                        ListView listView = (ListView) findViewById(R.id.hotel_list);
+                        listView.setAdapter(itemsAdapter);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Log.v("SSSSSSSSSSSSSS", "SSSSSSSSSSSS");
+                            }
+                        });
+
                     }
                 },
                 new Response.ErrorListener()
