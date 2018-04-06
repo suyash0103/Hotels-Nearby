@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -38,10 +40,21 @@ public class Owner extends AppCompatActivity  {
     FirebaseDatabase database;
     DatabaseReference databaseReference;
 
+    Button addHotel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
+
+        addHotel = (Button) findViewById(R.id.add_hotel);
+        addHotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Owner.this, AddHotel.class);
+                startActivity(intent);
+            }
+        });
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
