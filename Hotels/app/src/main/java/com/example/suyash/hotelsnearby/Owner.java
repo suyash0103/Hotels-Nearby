@@ -42,6 +42,11 @@ public class Owner extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+        database = FirebaseDatabase.getInstance();
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
