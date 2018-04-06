@@ -12,12 +12,16 @@ public class Hotel {
     private int rating;
     private String name;
     private String vicinity;
+    private String latitude;
+    private String longitude;
 
-    public Hotel(String name, String place_id, String vicinity)
+    public Hotel(String name, String place_id, String vicinity, String latitude, String longitude)
     {
         this.name = name;
         this.place_id = place_id;
         this.vicinity = vicinity;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getName()
