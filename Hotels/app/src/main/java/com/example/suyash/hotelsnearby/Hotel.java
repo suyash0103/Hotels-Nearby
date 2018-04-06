@@ -22,4 +22,14 @@ public class Hotel {
         this.rating = rating;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
+    public Boolean getOpen_now()
+    {
+        return open_now;
+    }
+
 }
