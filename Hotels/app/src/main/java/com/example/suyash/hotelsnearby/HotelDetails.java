@@ -34,5 +34,15 @@ public class HotelDetails extends AppCompatActivity {
         vicinity.setText(hotel.getVicinity());
         distance.setText(hotel.getDistance());
 
+        navigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("google.navigation:q=" + hotel.getLatitude() + "," + hotel.getLongitude());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+
     }
 }
