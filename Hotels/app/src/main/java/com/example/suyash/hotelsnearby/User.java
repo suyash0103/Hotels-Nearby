@@ -183,6 +183,7 @@ public class User extends AppCompatActivity implements LocationListener,
     protected void onStop() {
         gac.disconnect();
         index = 0;
+        hotelsArray = new ArrayList<>();
         super.onStop();
     }
 
