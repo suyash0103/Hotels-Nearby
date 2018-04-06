@@ -96,6 +96,13 @@ public class User extends AppCompatActivity implements LocationListener,
                         try {
                             JSONArray obj = response.getJSONArray("results");
                             Log.v("CCCCCCCCCCC", obj.toString());
+                            String plc1, plc2;
+                            for(int i = 0; i < obj.length(); i++)
+                            {
+                                JSONObject obj1 = obj.getJSONObject(i);
+                                plc1 = obj1.getString("place_id");
+                                Log.v("DDDDDDDDDDDD", plc1);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
