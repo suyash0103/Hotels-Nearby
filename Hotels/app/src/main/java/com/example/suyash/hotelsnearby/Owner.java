@@ -36,7 +36,7 @@ import android.Manifest;
 public class Owner extends AppCompatActivity  {
 
     FirebaseDatabase database;
-    DatabaseReference myRef;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class Owner extends AppCompatActivity  {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         database = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("owners");
 
     }
 
