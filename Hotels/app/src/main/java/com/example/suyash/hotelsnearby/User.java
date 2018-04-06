@@ -118,13 +118,9 @@ public class User extends AppCompatActivity implements LocationListener,
                                 Boolean open_now;
                                 name = obj1.getString("name");
                                 place_id = obj1.getString("place_id");
-//                                price_level = obj1.getInt("price_level");
-//                                rating = obj1.getInt("rating");
+                                vicinity = obj1.getString("vicinity");
 
-//                                JSONObject opening_hours = obj1.getJSONObject("opening_hours");
-//                                open_now = opening_hours.getBoolean("open_now");
-
-                                Hotel hotel = new Hotel(name, true, place_id, 0);
+                                Hotel hotel = new Hotel(name, place_id, vicinity);
                                 hotelsArray.add(hotel);
                             }
                         } catch (JSONException e) {

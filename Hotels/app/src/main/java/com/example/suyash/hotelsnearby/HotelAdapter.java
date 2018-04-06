@@ -40,10 +40,9 @@ public class HotelAdapter extends ArrayAdapter<Hotel> {
         nameTextView.setText(hotel.getName());
 
         //find the textview in list_item with id miwok_text_view
-        TextView open_nowTextView = (TextView) listItemView.findViewById(R.id.open_now);
+        TextView vicinityTextView = (TextView) listItemView.findViewById(R.id.vicinity);
         //gets the miwok Translation and set it to the text of this textView
-        String open_now = hotel.getOpen_now() + "";
-        open_nowTextView.setText(open_now);
+        vicinityTextView.setText(hotel.getVicinity());
 
 
         return listItemView;

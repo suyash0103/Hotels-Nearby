@@ -13,12 +13,11 @@ public class Hotel {
     private String name;
     private String vicinity;
 
-    public Hotel(String name, Boolean open_now, String place_id, int rating)
+    public Hotel(String name, String place_id, String vicinity)
     {
         this.name = name;
-        this.open_now = open_now;
         this.place_id = place_id;
-        this.rating = rating;
+        this.vicinity = vicinity;
     }
 
     public String getName()
@@ -26,9 +25,9 @@ public class Hotel {
         return name;
     }
 
-    public Boolean getOpen_now()
+    public String getVicinity()
     {
-        return open_now;
+        return vicinity;
     }
 
 }
