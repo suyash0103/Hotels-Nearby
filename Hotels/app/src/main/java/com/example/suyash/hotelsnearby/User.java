@@ -122,11 +122,21 @@ public class User extends AppCompatActivity implements LocationListener,
 
                                 JSONObject geometry = obj1.getJSONObject("geometry");
                                 JSONObject location = geometry.getJSONObject("location");
-                                String latitude = location.getString("lat");
-                                String longitude = location.getString("lng");
+                                String lat = location.getString("lat");
+                                String lng = location.getString("lng");
 //                                Log.v("DDDDDDDDDDDDD", latitude + "XXXXXX" + longitude);
 
-                                Hotel hotel = new Hotel(name, place_id, vicinity, latitude, longitude);
+                                double earthRadius = 3958.75;
+                                double dLat = Math.toRadians(Double.parseDouble(lat) - Double.parseDouble(latitude));
+                                double dLng = Math.toRadians(Double.parseDouble(lng) - Double.parseDouble(longitude));
+                                double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                                        Math.cos(Math.toRadians(Double.parseDouble(latitude))) * Math.cos(Math.toRadians(Double.parseDouble(lat))) *
+                                                Math.sin(dLng/2) * Math.sin(dLng/2);
+                                double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                                double dist = earthRadius * c;
+                                Log.v("DDDDDDDDDDDDD", dist + "");
+
+                                Hotel hotel = new Hotel(name, place_id, vicinity, lat, lng, dist);
                                 hotelsArray.add(hotel);
                             }
                         } catch (JSONException e) {
