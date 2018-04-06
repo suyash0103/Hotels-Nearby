@@ -1,10 +1,12 @@
 package com.example.suyash.hotelsnearby;
 
+import java.io.Serializable;
+
 /**
  * Created by suyash on 6/4/18.
  */
 
-public class Hotel {
+public class Hotel implements Serializable {
 
     private String place_id;
     private Boolean open_now;
@@ -34,6 +36,12 @@ public class Hotel {
     public String getVicinity()
     {
         return vicinity;
+    }
+
+    public String getDistance()
+    {
+        String dist = distance + "";
+        return dist;
     }
 
 }

@@ -16,6 +16,7 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Owner" />
-        <activity android:name=".User"></activity>
+        <activity android:name=".User" />
+        <activity android:name=".HotelDetails"></activity>
     </application>
 
 </manifest>

@@ -150,8 +150,13 @@ public class User extends AppCompatActivity implements LocationListener,
                         listView.setAdapter(itemsAdapter);
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
                                 Log.v("SSSSSSSSSSSSSS", "SSSSSSSSSSSS");
+                                Hotel hotel = (Hotel) parent.getItemAtPosition(position);
+
+                                Intent intent = new Intent(User.this, HotelDetails.class);
+                                intent.putExtra("Hotel", hotel);
+
                             }
                         });
 
