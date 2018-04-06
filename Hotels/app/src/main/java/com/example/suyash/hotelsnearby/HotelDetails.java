@@ -1,8 +1,10 @@
 package com.example.suyash.hotelsnearby;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -10,6 +12,8 @@ public class HotelDetails extends AppCompatActivity {
 
     TextView name, vicinity, distance;
     Button navigate;
+
+    private String API_KEY_MAP = "AIzaSyA_RPVEMIKVLeNAgyv5sPo28igOajTIy48";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,7 @@ public class HotelDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Hotel hotel = (Hotel) intent.getSerializableExtra("Hotel");
+        final Hotel hotel = (Hotel) intent.getSerializableExtra("Hotel");
 
         name.setText(hotel.getName());
         vicinity.setText(hotel.getVicinity());

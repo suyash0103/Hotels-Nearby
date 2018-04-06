@@ -49,4 +49,14 @@ public class Hotel implements Serializable {
         return place_id;
     }
 
+    public String getLatitude()
+    {
+        return latitude;
+    }
+
+    public String getLongitude()
+    {
+        return longitude;
+    }
+
 }
