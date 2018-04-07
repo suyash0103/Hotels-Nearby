@@ -40,23 +40,12 @@ import android.Manifest;
 
 public class Owner extends AppCompatActivity  {
 
-    Button addHotel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
 
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-        addHotel = (Button) findViewById(R.id.add_hotel);
-        addHotel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Owner.this, AddHotel.class);
-                startActivity(intent);
-            }
-        });
 
         FirebaseDatabase database;
         DatabaseReference databaseReference;
@@ -82,7 +71,7 @@ public class Owner extends AppCompatActivity  {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.logout, menu);
+        inflater.inflate(R.menu.owner_menu, menu);
         return true;
     }
 
@@ -91,6 +80,9 @@ public class Owner extends AppCompatActivity  {
             case R.id.logout:
                 signOut();
                 return true;
+            case R.id.add_hotel:
+                Intent intent = new Intent(Owner.this, AddHotel.class);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }
