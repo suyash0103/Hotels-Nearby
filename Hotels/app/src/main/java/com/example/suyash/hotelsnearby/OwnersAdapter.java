@@ -12,9 +12,6 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-/**
- * Created by suyash on 7/4/18.
- */
 
 public class OwnersAdapter extends ArrayAdapter<OwnerDetails> {
 
@@ -25,7 +22,6 @@ public class OwnersAdapter extends ArrayAdapter<OwnerDetails> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        // check if the current view is reused else inflate the view
         View listItemView = convertView;
         if(listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.owner_hotel_list, parent, false);
@@ -35,22 +31,6 @@ public class OwnersAdapter extends ArrayAdapter<OwnerDetails> {
 
         TextView hotelName = (TextView) listItemView.findViewById(R.id.hotel_name);
         hotelName.setText(ownerDetails.getName());
-        Log.v("CCCCCCCCCCCCc", ownerDetails.getName());
-
-
-        //get the object located at position
-//        Hotel hotel = getItem(position);
-//
-//        //find the textview in list_item with id default_text_view
-//        TextView nameTextView = (TextView) listItemView.findViewById(R.id.name);
-//        //gets the default Translation and set it to the text of this textView
-//        nameTextView.setText(hotel.getName());
-//
-//        //find the textview in list_item with id miwok_text_view
-//        TextView vicinityTextView = (TextView) listItemView.findViewById(R.id.vicinity);
-//        //gets the miwok Translation and set it to the text of this textView
-//        vicinityTextView.setText(hotel.getVicinity());
-
 
         return listItemView;
     }

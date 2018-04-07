@@ -2,9 +2,6 @@ package com.example.suyash.hotelsnearby;
 
 import java.io.Serializable;
 
-/**
- * Created by suyash on 6/4/18.
- */
 
 public class Hotel implements Serializable {
 

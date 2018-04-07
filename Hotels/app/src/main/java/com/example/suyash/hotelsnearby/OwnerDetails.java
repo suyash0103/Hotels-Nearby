@@ -4,9 +4,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
 
-/**
- * Created by suyash on 7/4/18.
- */
 
 @IgnoreExtraProperties
 public class OwnerDetails implements Serializable {

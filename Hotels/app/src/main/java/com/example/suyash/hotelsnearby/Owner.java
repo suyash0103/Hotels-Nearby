@@ -84,20 +84,16 @@ public class Owner extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
                     try {
-                        Log.v("In try", "In try");
                         String name = datas.child("hotel_name").getValue().toString();
                         String hotel_address = datas.child("hotel_address").getValue().toString();
                         String ending_time = datas.child("ending_time").getValue().toString();
                         String opening_time = datas.child("opening_time").getValue().toString();
                         String uid = datas.child("uid").getValue().toString();
-//                        Toast.makeText(Owner.this, uid, Toast.LENGTH_LONG).show();
                         OwnerDetails obj = new OwnerDetails(MainActivity.email_id, name, hotel_address, ending_time, opening_time, uid);
                         ownerDetails.add(obj);
-                        Log.v("AAAAAAAAAAAAAAAAA", name + "XX" + hotel_address + "XX" + ending_time + "XX" + opening_time + "ZZ" + ownerDetails.size());
                         ownersAdapter = new OwnersAdapter(Owner.this, ownerDetails);
                         listView.setAdapter(ownersAdapter);
                     } catch (Exception e) {
-                        Log.v("Exception", e.toString());
                     }
                 }
             }
@@ -108,11 +104,9 @@ public class Owner extends AppCompatActivity {
             }
         });
 
-//        Toast.makeText(Owner.this, ownerDetails.size() + " ", Toast.LENGTH_SHORT).show();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                Log.v("SSSSSSSSSSSSSS", "SSSSSSSSSSSS");
                 OwnerDetails owner = (OwnerDetails) parent.getItemAtPosition(position);
 
                 Intent intent = new Intent(Owner.this, OwnerHotelDetails.class);
@@ -135,20 +129,16 @@ public class Owner extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
                     try {
-                        Log.v("In try", "In try");
                         String name = datas.child("hotel_name").getValue().toString();
                         String hotel_address = datas.child("hotel_address").getValue().toString();
                         String ending_time = datas.child("ending_time").getValue().toString();
                         String opening_time = datas.child("opening_time").getValue().toString();
                         String uid = datas.child("uid").getValue().toString();
-//                        Toast.makeText(Owner.this, uid, Toast.LENGTH_LONG).show();
                         OwnerDetails obj = new OwnerDetails(MainActivity.email_id, name, hotel_address, ending_time, opening_time, uid);
                         ownerDetails.add(obj);
-                        Log.v("AAAAAAAAAAAAAAAAA", name + "XX" + hotel_address + "XX" + ending_time + "XX" + opening_time + "ZZ" + ownerDetails.size());
                         ownersAdapter = new OwnersAdapter(Owner.this, ownerDetails);
                         listView.setAdapter(ownersAdapter);
                     } catch (Exception e) {
-                        Log.v("Exception", e.toString());
                     }
                 }
             }

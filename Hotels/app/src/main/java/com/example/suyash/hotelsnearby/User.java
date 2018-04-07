@@ -87,31 +87,19 @@ public class User extends AppCompatActivity implements LocationListener,
                 .addApi(LocationServices.API)
                 .build();
 
-//        sendLocation();
-
-        // setting up the array adapter
-
     }
 
-    public void sendLocation()
-    {
+    public void sendLocation() {
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=2000&type=restaurant&key=" + API_KEY;
-        Log.v("BBBBBBBBB", latitude + "XXX" + longitude);
-//        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.0066525,74.7966876&radius=20000&type=restaurant&key=AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>()
-                {
+                new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.v("AAAAAAAAAAAAA", "AAAAAAAAAAAAAAAA");
-                        Log.d("Response", response.toString());
+
                         try {
                             JSONArray obj = response.getJSONArray("results");
-                            Log.v("CCCCCCCCCCC", obj.toString());
                             String plc1, plc2;
-                            Log.v("Length", obj.length() + "");
-                            for(int i = 0; i < obj.length(); i++)
-                            {
+                            for (int i = 0; i < obj.length(); i++) {
                                 JSONObject obj1 = obj.getJSONObject(i);
                                 String name, place_id, vicinity;
                                 int price_level, rating;
@@ -124,17 +112,15 @@ public class User extends AppCompatActivity implements LocationListener,
                                 JSONObject location = geometry.getJSONObject("location");
                                 String lat = location.getString("lat");
                                 String lng = location.getString("lng");
-//                                Log.v("DDDDDDDDDDDDD", latitude + "XXXXXX" + longitude);
 
                                 double earthRadius = 3958.75;
                                 double dLat = Math.toRadians(Double.parseDouble(lat) - Double.parseDouble(latitude));
                                 double dLng = Math.toRadians(Double.parseDouble(lng) - Double.parseDouble(longitude));
-                                double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                                double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
                                         Math.cos(Math.toRadians(Double.parseDouble(latitude))) * Math.cos(Math.toRadians(Double.parseDouble(lat))) *
-                                                Math.sin(dLng/2) * Math.sin(dLng/2);
-                                double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                                                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+                                double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                                 double dist = earthRadius * c;
-                                Log.v("DDDDDDDDDDDDD", dist + "");
 
                                 Hotel hotel = new Hotel(name, place_id, vicinity, lat, lng, dist);
                                 hotelsArray.add(hotel);
@@ -143,15 +129,13 @@ public class User extends AppCompatActivity implements LocationListener,
                             e.printStackTrace();
                         }
 
-                        HotelAdapter itemsAdapter= new HotelAdapter(User.this, hotelsArray);
+                        HotelAdapter itemsAdapter = new HotelAdapter(User.this, hotelsArray);
 
-                        // finding the listView and setting the adapter to it
                         ListView listView = (ListView) findViewById(R.id.hotel_list);
                         listView.setAdapter(itemsAdapter);
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                                Log.v("SSSSSSSSSSSSSS", "SSSSSSSSSSSS");
                                 Hotel hotel = (Hotel) parent.getItemAtPosition(position);
 
                                 Intent intent = new Intent(User.this, HotelDetails.class);
@@ -162,11 +146,9 @@ public class User extends AppCompatActivity implements LocationListener,
 
                     }
                 },
-                new Response.ErrorListener()
-                {
+                new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.Response", error.toString());
                     }
                 }
         );
@@ -206,10 +188,8 @@ public class User extends AppCompatActivity implements LocationListener,
 
             return;
         }
-        Log.d(TAG, "onConnected");
 
         Location ll = LocationServices.FusedLocationApi.getLastLocation(gac);
-        Log.d(TAG, "LastLocation: " + (ll == null ? "NO LastLocation" : ll.toString()));
 
         LocationServices.FusedLocationApi.requestLocationUpdates(gac, locationRequest, this);
     }
@@ -220,7 +200,6 @@ public class User extends AppCompatActivity implements LocationListener,
 
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(User.this, "Permission was granted!", Toast.LENGTH_LONG).show();
                     try {
@@ -250,12 +229,10 @@ public class User extends AppCompatActivity implements LocationListener,
 
     private void updateUI(Location loc) {
         index++;
-        Log.d(TAG, "updateUI");
         latitude = Double.toString(loc.getLatitude());
         longitude = Double.toString(loc.getLongitude());
-        if(index == 1)
+        if (index == 1)
             sendLocation();
-//        Toast.makeText(User.this, Double.toString(loc.getLatitude()) + "  " + Double.toString(loc.getLongitude()), Toast.LENGTH_LONG).show();
     }
 
     private boolean isLocationEnabled() {
