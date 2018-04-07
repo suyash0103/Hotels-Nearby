@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -46,12 +47,19 @@ public class AddHotel extends AppCompatActivity {
                 hotel_open_time = open_time.getText().toString();
                 hotel_close_time = close_time.getText().toString();
 
-                String uid = databaseReference.push().getKey();
-                OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, hotel_name, hotel_address, hotel_open_time, hotel_close_time, uid);
-                databaseReference.child(uid).setValue(ownerDetails);
+                if(hotel_name.equals("") || hotel_close_time.equals("") || hotel_open_time.equals("") || hotel_address.equals(""))
+                {
+                    Toast.makeText(AddHotel.this, "Enter all fields", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    String uid = databaseReference.push().getKey();
+                    OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, hotel_name, hotel_address, hotel_open_time, hotel_close_time, uid);
+                    databaseReference.child(uid).setValue(ownerDetails);
 
-                Intent intent = new Intent(AddHotel.this, Owner.class);
-                startActivity(intent);
+                    Intent intent = new Intent(AddHotel.this, Owner.class);
+                    startActivity(intent);
+                }
             }
         });
 

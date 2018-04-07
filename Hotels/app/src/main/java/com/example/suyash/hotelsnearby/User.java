@@ -95,7 +95,7 @@ public class User extends AppCompatActivity implements LocationListener,
 
     public void sendLocation()
     {
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=500&type=restaurant&key=" + API_KEY;
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=2000&type=restaurant&key=" + API_KEY;
         Log.v("BBBBBBBBB", latitude + "XXX" + longitude);
 //        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.0066525,74.7966876&radius=20000&type=restaurant&key=AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,

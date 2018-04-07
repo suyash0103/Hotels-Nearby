@@ -22,13 +22,11 @@ public class HotelAdapter extends ArrayAdapter<Hotel> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        // check if the current view is reused else inflate the view
         View listItemView = convertView;
         if(listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.hotel_list, parent, false);
         }
-
-        //get the object located at position
+        
         Hotel hotel = getItem(position);
 
         //find the textview in list_item with id default_text_view

@@ -5,43 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="4dp"
     tools:context="com.example.suyash.hotelsnearby.HotelDetails">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name : "/>
+        android:text="Name : "
+        android:layout_margin="2dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/name"/>
+        android:id="@+id/name"
+        android:textStyle="bold"
+        android:layout_margin="4dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vicinity : "/>
+        android:text="Vicinity : "
+        android:layout_margin="2dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/vicinity"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distance in kilometers : "/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/distance"/>
+        android:id="@+id/vicinity"
+        android:layout_margin="4dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:id="@+id/navigate"
-        android:text="Navigate"/>
+        android:text="Navigate"
+        android:layout_margin="8dp"/>
 
 </LinearLayout>

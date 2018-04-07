@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,16 +44,30 @@ import android.Manifest;
 
 import java.util.ArrayList;
 
-public class Owner extends AppCompatActivity  {
+public class Owner extends AppCompatActivity {
 
     public static ArrayList<OwnerDetails> ownerDetails;
     OwnersAdapter ownersAdapter;
     ListView listView;
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+
 
         ownerDetails = new ArrayList<>();
 
@@ -67,9 +82,8 @@ public class Owner extends AppCompatActivity  {
         hotelRef.orderByChild("email").equalTo(MainActivity.email_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    try
-                    {
+                for (DataSnapshot datas : dataSnapshot.getChildren()) {
+                    try {
                         Log.v("In try", "In try");
                         String name = datas.child("hotel_name").getValue().toString();
                         String hotel_address = datas.child("hotel_address").getValue().toString();
@@ -82,9 +96,7 @@ public class Owner extends AppCompatActivity  {
                         Log.v("AAAAAAAAAAAAAAAAA", name + "XX" + hotel_address + "XX" + ending_time + "XX" + opening_time + "ZZ" + ownerDetails.size());
                         ownersAdapter = new OwnersAdapter(Owner.this, ownerDetails);
                         listView.setAdapter(ownersAdapter);
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         Log.v("Exception", e.toString());
                     }
                 }
@@ -106,9 +118,47 @@ public class Owner extends AppCompatActivity  {
                 Intent intent = new Intent(Owner.this, OwnerHotelDetails.class);
                 intent.putExtra("Hotel", owner);
                 startActivity(intent);
+                finish();
             }
         });
 
+    }
+
+    public void refresh() {
+        ownerDetails = new ArrayList<>();
+        FirebaseDatabase database;
+        DatabaseReference hotelRef;
+        database = FirebaseDatabase.getInstance();
+        hotelRef = database.getReference().child("hotels");
+        hotelRef.orderByChild("email").equalTo(MainActivity.email_id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot datas : dataSnapshot.getChildren()) {
+                    try {
+                        Log.v("In try", "In try");
+                        String name = datas.child("hotel_name").getValue().toString();
+                        String hotel_address = datas.child("hotel_address").getValue().toString();
+                        String ending_time = datas.child("ending_time").getValue().toString();
+                        String opening_time = datas.child("opening_time").getValue().toString();
+                        String uid = datas.child("uid").getValue().toString();
+//                        Toast.makeText(Owner.this, uid, Toast.LENGTH_LONG).show();
+                        OwnerDetails obj = new OwnerDetails(MainActivity.email_id, name, hotel_address, ending_time, opening_time, uid);
+                        ownerDetails.add(obj);
+                        Log.v("AAAAAAAAAAAAAAAAA", name + "XX" + hotel_address + "XX" + ending_time + "XX" + opening_time + "ZZ" + ownerDetails.size());
+                        ownersAdapter = new OwnersAdapter(Owner.this, ownerDetails);
+                        listView.setAdapter(ownersAdapter);
+                    } catch (Exception e) {
+                        Log.v("Exception", e.toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

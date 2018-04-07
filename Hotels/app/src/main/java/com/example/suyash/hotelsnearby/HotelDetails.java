@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class HotelDetails extends AppCompatActivity {
 
-    TextView name, vicinity, distance;
+    TextView name, vicinity;
     Button navigate;
 
     private String API_KEY_MAP = "AIzaSyA_RPVEMIKVLeNAgyv5sPo28igOajTIy48";
@@ -22,7 +22,6 @@ public class HotelDetails extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.name);
         vicinity = (TextView) findViewById(R.id.vicinity);
-        distance = (TextView) findViewById(R.id.distance);
 
         navigate = (Button) findViewById(R.id.navigate);
 
@@ -32,7 +31,6 @@ public class HotelDetails extends AppCompatActivity {
 
         name.setText(hotel.getName());
         vicinity.setText(hotel.getVicinity());
-        distance.setText(hotel.getDistance());
 
         navigate.setOnClickListener(new View.OnClickListener() {
             @Override

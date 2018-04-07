@@ -108,6 +108,7 @@ public class OwnerHotelDetails extends AppCompatActivity {
                     Toast.makeText(OwnerHotelDetails.this, "Updated", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(OwnerHotelDetails.this, Owner.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
