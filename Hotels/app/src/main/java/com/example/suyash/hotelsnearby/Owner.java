@@ -63,20 +63,20 @@ public class Owner extends AppCompatActivity  {
 
         database = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("owners");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                OwnerDetails post = dataSnapshot.getValue(OwnerDetails.class);
-                System.out.println(post + "      XXXXXXXXXXXXXXXXXXx");
-                Log.v("XXXXXXXXXXXXXXxx", post.hotel_name);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                OwnerDetails post = dataSnapshot.getValue(OwnerDetails.class);
+//                System.out.println(post + "      XXXXXXXXXXXXXXXXXXx");
+//                Log.v("XXXXXXXXXXXXXXxx", post.hotel_name);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
 
     }
 

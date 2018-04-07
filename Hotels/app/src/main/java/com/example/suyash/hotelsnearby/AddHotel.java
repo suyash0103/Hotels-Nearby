@@ -10,10 +10,14 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AddHotel extends AppCompatActivity {
 
     EditText name, address, open_time, close_time;
     Button save;
+    String hotel_name, hotel_address, hotel_open_time, hotel_close_time;
 
     FirebaseDatabase database;
     DatabaseReference databaseReference;
@@ -30,22 +34,20 @@ public class AddHotel extends AppCompatActivity {
 
         save = (Button) findViewById(R.id.save);
 
+        hotel_name = name.getText().toString();
+        hotel_address = address.getText().toString();
+        hotel_open_time = open_time.getText().toString();
+        hotel_close_time = close_time.getText().toString();
+
         database = FirebaseDatabase.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("owners");
+        databaseReference = database.getReference("server/saving-data/fireblog");
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Creating new user node, which returns the unique key value
-                // new user node would be /users/$userid/
-                String userId = databaseReference.push().getKey();
-                Log.v("AAAAAAAAAAAAAA", userId);
-
-                // creating user object
-                OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, name.getText().toString(), address.getText().toString(), open_time.getText().toString(), close_time.getText().toString());
-
-                // pushing user to 'users' node using the userId
-                databaseReference.child(userId).setValue(ownerDetails);
+                DatabaseReference ownerRef = databaseReference.child("owner");
+                OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, hotel_name, hotel_address, hotel_open_time, hotel_close_time);
+                ownerRef.setValue(ownerDetails);
             }
         });
 
