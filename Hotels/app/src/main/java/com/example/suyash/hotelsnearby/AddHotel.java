@@ -40,14 +40,14 @@ public class AddHotel extends AppCompatActivity {
         hotel_close_time = close_time.getText().toString();
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("server/saving-data/fireblog");
+        databaseReference = database.getReference("hotels");
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatabaseReference ownerRef = databaseReference.child("owner");
                 OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, hotel_name, hotel_address, hotel_open_time, hotel_close_time);
-                ownerRef.setValue(ownerDetails);
+                ownerRef.push().setValue(ownerDetails);
             }
         });
 
