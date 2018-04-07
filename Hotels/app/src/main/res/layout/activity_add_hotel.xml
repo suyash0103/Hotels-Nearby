@@ -6,4 +6,34 @@
     android:layout_height="match_parent"
     tools:context="com.example.suyash.hotelsnearby.AddHotel">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:hint="Hotel Name"
+        android:id="@+id/name"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:hint="Address"
+        android:id="@+id/address"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:hint="Opening Time"
+        android:id="@+id/open_time"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:hint="Closing Time"
+        android:id="@+id/close_time"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/save"
+        android:text="Save Hotel"/>
+
 </android.support.constraint.ConstraintLayout>
