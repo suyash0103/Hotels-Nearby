@@ -95,7 +95,9 @@ public class Owner extends AppCompatActivity  {
                         String hotel_address = datas.child("hotel_address").getValue().toString();
                         String ending_time = datas.child("ending_time").getValue().toString();
                         String opening_time = datas.child("opening_time").getValue().toString();
-                        OwnerDetails obj = new OwnerDetails(MainActivity.email_id, name, hotel_address, ending_time, opening_time);
+                        String uid = datas.child("uid").getValue().toString();
+//                        Toast.makeText(Owner.this, uid, Toast.LENGTH_LONG).show();
+                        OwnerDetails obj = new OwnerDetails(MainActivity.email_id, name, hotel_address, ending_time, opening_time, uid);
                         ownerDetails.add(obj);
                         Log.v("AAAAAAAAAAAAAAAAA", name + "XX" + hotel_address + "XX" + ending_time + "XX" + opening_time + "ZZ" + ownerDetails.size());
                         ownersAdapter = new OwnersAdapter(Owner.this, ownerDetails);
@@ -114,13 +116,13 @@ public class Owner extends AppCompatActivity  {
             }
         });
 
-        Log.v("AAAAAAAAAAAAAAAAA", ownerDetails.size() + "");
-
-        for(int i = 0; i < ownerDetails.size(); i++)
-        {
-            OwnerDetails owner = ownerDetails.get(i);
-            Log.v("QQQQQQQQQQ", owner.getName() + "   " + owner.getHotel_address());
-        }
+//        Log.v("AAAAAAAAAAAAAAAAA", ownerDetails.size() + "");
+//
+//        for(int i = 0; i < ownerDetails.size(); i++)
+//        {
+//            OwnerDetails owner = ownerDetails.get(i);
+//            Log.v("QQQQQQQQQQ", owner.getName() + "   " + owner.getHotel_address());
+//        }
 
 //        OwnersAdapter ownersAdapter= new OwnersAdapter(Owner.this, ownerDetails);
 //
@@ -128,7 +130,7 @@ public class Owner extends AppCompatActivity  {
 //        ListView listView = (ListView) findViewById(R.id.owner_hotelssss);
 //        listView.setAdapter(ownersAdapter);
 
-        Toast.makeText(Owner.this, ownerDetails.size() + " ", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Owner.this, ownerDetails.size() + " ", Toast.LENGTH_SHORT).show();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {

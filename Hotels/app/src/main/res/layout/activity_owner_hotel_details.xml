@@ -62,6 +62,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/end_time"/>
 
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/update"
+        android:text="Update"/>
 
 </LinearLayout>

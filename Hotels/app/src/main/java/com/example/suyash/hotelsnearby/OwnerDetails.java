@@ -17,6 +17,7 @@ public class OwnerDetails implements Serializable {
     public String hotel_address;
     public String opening_time;
     public String ending_time;
+    public String uid;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
@@ -25,13 +26,14 @@ public class OwnerDetails implements Serializable {
 
     }
 
-    public OwnerDetails(String email, String hotel_name, String hotel_address, String opening_time, String ending_time)
+    public OwnerDetails(String email, String hotel_name, String hotel_address, String opening_time, String ending_time, String uid)
     {
         this.email = email;
         this.hotel_name = hotel_name;
         this.hotel_address = hotel_address;
         this.opening_time = opening_time;
         this.ending_time = ending_time;
+        this.uid = uid;
     }
 
     public String getName()
@@ -52,6 +54,11 @@ public class OwnerDetails implements Serializable {
     public String getEnding_time()
     {
         return ending_time;
+    }
+
+    public String getUid()
+    {
+        return uid;
     }
 
 }
