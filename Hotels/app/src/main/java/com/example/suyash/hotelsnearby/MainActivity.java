@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private int RC_SIGN_IN_1 = 1;
     private int RC_SIGN_IN_2 = 2;
 
+    public static String email_id;
+
     int a = 1;
 
     @Override
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(GoogleSignInAccount account) {
         if (account != null && a == 2) {
+            email_id = account.getEmail();
             Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
             Intent AfterLoginIntent = new Intent(MainActivity.this, User.class);
             startActivity(AfterLoginIntent);
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(account != null && a == 1)
         {
+            email_id = account.getEmail();
             Toast.makeText(MainActivity.this, "Logged In ", Toast.LENGTH_SHORT).show();
             Intent AfterLoginIntent = new Intent(MainActivity.this, Owner.class);
             startActivity(AfterLoginIntent);
