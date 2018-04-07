@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "943878693185",
-    "firebase_url": "https://hotels-7ab71.firebaseio.com",
-    "project_id": "hotels-7ab71",
-    "storage_bucket": "hotels-7ab71.appspot.com"
+    "project_number": "738592585504",
+    "firebase_url": "https://hotel-d3f44.firebaseio.com",
+    "project_id": "hotel-d3f44",
+    "storage_bucket": "hotel-d3f44.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:943878693185:android:3f0fdb9db3dc500c",
+        "mobilesdk_app_id": "1:738592585504:android:3f0fdb9db3dc500c",
         "android_client_info": {
           "package_name": "com.example.suyash.hotelsnearby"
         }
       },
       "oauth_client": [
         {
-          "client_id": "943878693185-it090sjvcvbtncd8j8jf1ijnck2riba6.apps.googleusercontent.com",
+          "client_id": "738592585504-g8dk2rj05u1g41bksfoebnehhrvl7hms.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.suyash.hotelsnearby",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "943878693185-odmh8901ovfak21qk97ran5d1cmdis2b.apps.googleusercontent.com",
+          "client_id": "738592585504-254gq24dmtib2q69ep29r2hchg0bl0t4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAn9CaKdX6tM_0egK-CMzy6jxjRDy0Ooho"
+          "current_key": "AIzaSyCxjgYBtEqRJ14CkRgRwu_1Eve14i22Uks"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "943878693185-odmh8901ovfak21qk97ran5d1cmdis2b.apps.googleusercontent.com",
+              "client_id": "738592585504-254gq24dmtib2q69ep29r2hchg0bl0t4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -41,7 +41,8 @@
         <activity android:name=".Owner" />
         <activity android:name=".User" />
         <activity android:name=".HotelDetails" />
-        <activity android:name=".AddHotel"></activity>
+        <activity android:name=".AddHotel">
+        </activity>
     </application>
 
 </manifest>

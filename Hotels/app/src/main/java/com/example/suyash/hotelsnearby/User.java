@@ -57,7 +57,7 @@ public class User extends AppCompatActivity implements LocationListener,
     GoogleApiClient gac;
     LocationRequest locationRequest;
 
-    private String API_KEY = "AIzaSyDGhLYLcHRH-Hpt0WfoVn9vdKXrnKkDPd4";
+    private String API_KEY = "AIzaSyBTatY9TQiRgCXal80TAx_QadKLvG7HkdM";
     private String latitude, longitude;
 
     int index = 0;
