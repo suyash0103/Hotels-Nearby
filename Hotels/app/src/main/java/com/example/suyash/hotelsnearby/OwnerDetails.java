@@ -19,8 +19,6 @@ public class OwnerDetails implements Serializable {
     public String ending_time;
     public String uid;
 
-    // Default constructor required for calls to
-    // DataSnapshot.getValue(User.class)
     public OwnerDetails()
     {
 

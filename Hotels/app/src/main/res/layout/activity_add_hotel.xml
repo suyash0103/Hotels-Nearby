@@ -7,32 +7,52 @@
     android:orientation="vertical"
     tools:context="com.example.suyash.hotelsnearby.AddHotel">
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"/>
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Hotel Name"
         android:id="@+id/name"/>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"/>
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Address"
         android:id="@+id/address"/>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opening Time (24 hour format)"/>
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Opening Time"
         android:id="@+id/open_time"/>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Closing Time (24 hour format)"/>
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Closing Time"
         android:id="@+id/close_time"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/save"
         android:text="Save Hotel"/>

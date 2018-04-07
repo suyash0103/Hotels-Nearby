@@ -1,5 +1,6 @@
 package com.example.suyash.hotelsnearby;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,10 +46,12 @@ public class AddHotel extends AppCompatActivity {
                 hotel_open_time = open_time.getText().toString();
                 hotel_close_time = close_time.getText().toString();
 
-//                DatabaseReference ownerRef = databaseReference.child("owner");
                 String uid = databaseReference.push().getKey();
                 OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, hotel_name, hotel_address, hotel_open_time, hotel_close_time, uid);
                 databaseReference.child(uid).setValue(ownerDetails);
+
+                Intent intent = new Intent(AddHotel.this, Owner.class);
+                startActivity(intent);
             }
         });
 

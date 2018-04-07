@@ -45,8 +45,7 @@ import java.util.ArrayList;
 
 public class Owner extends AppCompatActivity  {
 
-    ArrayList<OwnerDetails> ownerDetails;
-    ArrayList<String> arr;
+    public static ArrayList<OwnerDetails> ownerDetails;
     OwnersAdapter ownersAdapter;
     ListView listView;
 
@@ -56,33 +55,14 @@ public class Owner extends AppCompatActivity  {
         setContentView(R.layout.activity_owner);
 
         ownerDetails = new ArrayList<>();
-        arr = new ArrayList<>();
 
         listView = (ListView) findViewById(R.id.owner_hotelssss);
-
-        arr.add("A");
-        arr.add("A");
-        arr.add("A");
-        arr.add("A");
-        arr.add("A");
-        arr.add("A");
-        arr.add("A");
-
-//        ListView listView1 = (ListView) findViewById(R.id.owner_hotelssss);
-//        ArrayAdapter adapter = new ArrayAdapter(Owner.this, android.R.layout.simple_list_item_1, arr);
-//        listView1.setAdapter(adapter);
-
-
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         final FirebaseDatabase database;
         DatabaseReference hotelRef;
 
         database = FirebaseDatabase.getInstance();
         hotelRef = database.getReference().child("hotels");
-
-//        Log.v("In try", "In try");
-//        DatabaseReference ownerRef = hotelRef.child("owner");
 
         hotelRef.orderByChild("email").equalTo(MainActivity.email_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -115,20 +95,6 @@ public class Owner extends AppCompatActivity  {
 
             }
         });
-
-//        Log.v("AAAAAAAAAAAAAAAAA", ownerDetails.size() + "");
-//
-//        for(int i = 0; i < ownerDetails.size(); i++)
-//        {
-//            OwnerDetails owner = ownerDetails.get(i);
-//            Log.v("QQQQQQQQQQ", owner.getName() + "   " + owner.getHotel_address());
-//        }
-
-//        OwnersAdapter ownersAdapter= new OwnersAdapter(Owner.this, ownerDetails);
-//
-//        // finding the listView and setting the adapter to it
-//        ListView listView = (ListView) findViewById(R.id.owner_hotelssss);
-//        listView.setAdapter(ownersAdapter);
 
 //        Toast.makeText(Owner.this, ownerDetails.size() + " ", Toast.LENGTH_SHORT).show();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
