@@ -8,6 +8,7 @@ import android.widget.Toast;
 public class OwnerHotelDetails extends AppCompatActivity {
 
     OwnerDetails hotel;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class OwnerHotelDetails extends AppCompatActivity {
 
 //        Toast.makeText(this, hotel.getName(), Toast.LENGTH_SHORT).show();
 
-        
+
 
     }
 }
