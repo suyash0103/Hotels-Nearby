@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -45,6 +46,9 @@ import java.util.ArrayList;
 public class Owner extends AppCompatActivity  {
 
     ArrayList<OwnerDetails> ownerDetails;
+    ArrayList<String> arr;
+    OwnersAdapter ownersAdapter;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,22 @@ public class Owner extends AppCompatActivity  {
         setContentView(R.layout.activity_owner);
 
         ownerDetails = new ArrayList<>();
+        arr = new ArrayList<>();
+
+        listView = (ListView) findViewById(R.id.owner_hotelssss);
+
+        arr.add("A");
+        arr.add("A");
+        arr.add("A");
+        arr.add("A");
+        arr.add("A");
+        arr.add("A");
+        arr.add("A");
+
+//        ListView listView1 = (ListView) findViewById(R.id.owner_hotelssss);
+//        ArrayAdapter adapter = new ArrayAdapter(Owner.this, android.R.layout.simple_list_item_1, arr);
+//        listView1.setAdapter(adapter);
+
 
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
@@ -61,7 +81,7 @@ public class Owner extends AppCompatActivity  {
         database = FirebaseDatabase.getInstance();
         hotelRef = database.getReference().child("hotels");
 
-        Log.v("In try", "In try");
+//        Log.v("In try", "In try");
 //        DatabaseReference ownerRef = hotelRef.child("owner");
 
         hotelRef.orderByChild("email").equalTo(MainActivity.email_id).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -72,12 +92,14 @@ public class Owner extends AppCompatActivity  {
                     {
                         Log.v("In try", "In try");
                         String name = datas.child("hotel_name").getValue().toString();
-                        Log.v("AAAAAAAAAAAAAAAAA", name);
                         String hotel_address = datas.child("hotel_address").getValue().toString();
                         String ending_time = datas.child("ending_time").getValue().toString();
                         String opening_time = datas.child("opening_time").getValue().toString();
                         OwnerDetails obj = new OwnerDetails(MainActivity.email_id, name, hotel_address, ending_time, opening_time);
                         ownerDetails.add(obj);
+                        Log.v("AAAAAAAAAAAAAAAAA", name + "XX" + hotel_address + "XX" + ending_time + "XX" + opening_time + "ZZ" + ownerDetails.size());
+                        ownersAdapter = new OwnersAdapter(Owner.this, ownerDetails);
+                        listView.setAdapter(ownersAdapter);
                     }
                     catch (Exception e)
                     {
@@ -92,22 +114,32 @@ public class Owner extends AppCompatActivity  {
             }
         });
 
-        OwnersAdapter ownersAdapter= new OwnersAdapter(Owner.this, ownerDetails);
+        Log.v("AAAAAAAAAAAAAAAAA", ownerDetails.size() + "");
 
-        // finding the listView and setting the adapter to it
-        ListView listView = (ListView) findViewById(R.id.owner_hotels);
-        listView.setAdapter(ownersAdapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-//                Log.v("SSSSSSSSSSSSSS", "SSSSSSSSSSSS");
-//                Hotel hotel = (Hotel) parent.getItemAtPosition(position);
+        for(int i = 0; i < ownerDetails.size(); i++)
+        {
+            OwnerDetails owner = ownerDetails.get(i);
+            Log.v("QQQQQQQQQQ", owner.getName() + "   " + owner.getHotel_address());
+        }
+
+//        OwnersAdapter ownersAdapter= new OwnersAdapter(Owner.this, ownerDetails);
 //
-//                Intent intent = new Intent(User.this, HotelDetails.class);
-//                intent.putExtra("Hotel", hotel);
-//                startActivity(intent);
-//            }
-//        });
+//        // finding the listView and setting the adapter to it
+//        ListView listView = (ListView) findViewById(R.id.owner_hotelssss);
+//        listView.setAdapter(ownersAdapter);
+
+        Toast.makeText(Owner.this, ownerDetails.size() + " ", Toast.LENGTH_SHORT).show();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                Log.v("SSSSSSSSSSSSSS", "SSSSSSSSSSSS");
+                OwnerDetails owner = (OwnerDetails) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(Owner.this, OwnerHotelDetails.class);
+                intent.putExtra("Hotel", owner);
+                startActivity(intent);
+            }
+        });
 
     }
 

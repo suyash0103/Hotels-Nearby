@@ -2,12 +2,14 @@ package com.example.suyash.hotelsnearby;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 /**
  * Created by suyash on 7/4/18.
  */
 
 @IgnoreExtraProperties
-public class OwnerDetails {
+public class OwnerDetails implements Serializable {
 
     public String name;
     public String email;
@@ -30,6 +32,26 @@ public class OwnerDetails {
         this.hotel_address = hotel_address;
         this.opening_time = opening_time;
         this.ending_time = ending_time;
+    }
+
+    public String getName()
+    {
+        return hotel_name;
+    }
+
+    public String getHotel_address()
+    {
+        return hotel_address;
+    }
+
+    public String getOpening_time()
+    {
+        return opening_time;
+    }
+
+    public String getEnding_time()
+    {
+        return ending_time;
     }
 
 }

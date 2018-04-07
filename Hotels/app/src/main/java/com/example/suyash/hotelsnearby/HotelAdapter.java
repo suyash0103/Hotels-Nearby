@@ -15,9 +15,6 @@ import java.util.ArrayList;
 
 public class HotelAdapter extends ArrayAdapter<Hotel> {
 
-    //Resource id for background color of list
-    private int mColorResourceId;
-
     public HotelAdapter(Activity context, ArrayList<Hotel> hotels) {
         super(context, 0, hotels);
     }
