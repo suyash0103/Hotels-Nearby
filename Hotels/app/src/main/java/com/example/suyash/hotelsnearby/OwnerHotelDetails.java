@@ -5,18 +5,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class OwnerHotelDetails extends AppCompatActivity {
 
     OwnerDetails hotel;
     EditText name, address, ot, et;
     Button update;
+    int a = 0;
+
+    Query q;
+    DatabaseReference d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +43,7 @@ public class OwnerHotelDetails extends AppCompatActivity {
         hotel = (OwnerDetails) intent.getSerializableExtra("Hotel");
 
         final FirebaseDatabase database;
-        DatabaseReference hotelRef;
+        final DatabaseReference hotelRef;
 
         database = FirebaseDatabase.getInstance();
         hotelRef = database.getReference().child("hotels");
@@ -51,7 +61,7 @@ public class OwnerHotelDetails extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                a = 1;
             }
         };
 
@@ -67,7 +77,67 @@ public class OwnerHotelDetails extends AppCompatActivity {
         ot.addTextChangedListener(tw);
         et.addTextChangedListener(tw);
 
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (a == 0) {
+                    Toast.makeText(OwnerHotelDetails.this, "No fields changed", Toast.LENGTH_LONG).show();
+                } else {
+                    hotelRef.orderByChild("uid").equalTo(hotel.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+//                            String keyid = data.getKey();
+//                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("hotels");
+////                            q = ref.orderByChild("uid").equalTo(hotel.getUid());
+//
+//                            q = hotelRef.orderByKey();
 
+//                            Log.v("AAAAAAAAAAAAAAAAaa", q.g);
+
+
+//                            q.equalTo("hotel_name");
+//                            d = q.getRef();
+//                            d.setValue(name.getText().toString());
+//
+//                            d = q.equalTo("hotel_address").getRef();
+//                            d.setValue(address.getText().toString());
+//
+//                            d = q.equalTo("opening_time").getRef();
+//                            d.setValue(ot.getText().toString());
+//
+//                            d = q.equalTo("ending_time").getRef();
+//                            d.setValue(et.getText().toString());
+//
+//                            d = q.equalTo("name").getRef();
+//                            d.setValue(name.getText().toString());
+//
+//                            d = q.equalTo("email").getRef();
+//                            d.setValue(MainActivity.email_id);
+//
+//                            d = q.equalTo("uid").getRef();
+//                            d.setValue(hotel.getUid());
+
+                            String keyid = hotel.getUid();
+                            Log.v("KEYYYYYYYYYYY", keyid);
+                            hotelRef.child(keyid).child("hotel_name").setValue(name.getText().toString());
+                            hotelRef.child(keyid).child("name").setValue(name.getText().toString());
+                            hotelRef.child(keyid).child("hotel_address").setValue(address.getText().toString());
+                            hotelRef.child(keyid).child("opening_time").setValue(ot.getText().toString());
+                            hotelRef.child(keyid).child("ending_time").setValue(et.getText().toString());
+                            hotelRef.child(keyid).child("email").setValue(MainActivity.email_id);
+                            hotelRef.child(keyid).child("uid").setValue(keyid);
+//                        }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+        });
 
     }
 }
