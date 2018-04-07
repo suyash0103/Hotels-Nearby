@@ -38,34 +38,52 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.Manifest;
 
+import java.util.ArrayList;
+
 public class Owner extends AppCompatActivity  {
+
+    ArrayList<OwnerDetails> ownerDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
 
+        ownerDetails = new ArrayList<>();
+
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         FirebaseDatabase database;
-        DatabaseReference databaseReference;
+        DatabaseReference hotelRef;
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("owners");
-//
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                OwnerDetails post = dataSnapshot.getValue(OwnerDetails.class);
-//                System.out.println(post + "      XXXXXXXXXXXXXXXXXXx");
-//                Log.v("XXXXXXXXXXXXXXxx", post.hotel_name);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
+        hotelRef = database.getReference().child("hotels");
+
+        Log.v("In try", "In try");
+//        DatabaseReference ownerRef = hotelRef.child("owner");
+
+        hotelRef.orderByChild("email").equalTo(MainActivity.email_id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot datas: dataSnapshot.getChildren()){
+                    try
+                    {
+                        Log.v("In try", "In try");
+                        String name = datas.child("hotel_name").getValue().toString();
+                        Log.v("AAAAAAAAAAAAAAAAA", name);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.v("Exception", e.toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

@@ -45,9 +45,9 @@ public class AddHotel extends AppCompatActivity {
                 hotel_open_time = open_time.getText().toString();
                 hotel_close_time = close_time.getText().toString();
 
-                DatabaseReference ownerRef = databaseReference.child("owner");
+//                DatabaseReference ownerRef = databaseReference.child("owner");
                 OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, hotel_name, hotel_address, hotel_open_time, hotel_close_time);
-                ownerRef.push().setValue(ownerDetails);
+                databaseReference.push().setValue(ownerDetails);
             }
         });
 
