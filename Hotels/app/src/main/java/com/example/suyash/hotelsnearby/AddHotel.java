@@ -34,17 +34,17 @@ public class AddHotel extends AppCompatActivity {
 
         save = (Button) findViewById(R.id.save);
 
-        hotel_name = name.getText().toString();
-        hotel_address = address.getText().toString();
-        hotel_open_time = open_time.getText().toString();
-        hotel_close_time = close_time.getText().toString();
-
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("hotels");
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hotel_name = name.getText().toString();
+                hotel_address = address.getText().toString();
+                hotel_open_time = open_time.getText().toString();
+                hotel_close_time = close_time.getText().toString();
+
                 DatabaseReference ownerRef = databaseReference.child("owner");
                 OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, hotel_name, hotel_address, hotel_open_time, hotel_close_time);
                 ownerRef.push().setValue(ownerDetails);
