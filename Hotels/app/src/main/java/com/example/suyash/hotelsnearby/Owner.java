@@ -40,15 +40,14 @@ import android.Manifest;
 
 public class Owner extends AppCompatActivity  {
 
-    FirebaseDatabase database;
-    DatabaseReference databaseReference;
-
     Button addHotel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
+
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         addHotel = (Button) findViewById(R.id.add_hotel);
         addHotel.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +58,8 @@ public class Owner extends AppCompatActivity  {
             }
         });
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        FirebaseDatabase database;
+        DatabaseReference databaseReference;
 
         database = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("owners");
@@ -69,6 +69,7 @@ public class Owner extends AppCompatActivity  {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 OwnerDetails post = dataSnapshot.getValue(OwnerDetails.class);
                 System.out.println(post + "      XXXXXXXXXXXXXXXXXXx");
+                Log.v("XXXXXXXXXXXXXXxx", post.hotel_name);
             }
 
             @Override

@@ -9,25 +9,25 @@
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Hotel Name"
         android:id="@+id/name"/>
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Address"
         android:id="@+id/address"/>
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Opening Time"
         android:id="@+id/open_time"/>
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Closing Time"
         android:id="@+id/close_time"/>
 

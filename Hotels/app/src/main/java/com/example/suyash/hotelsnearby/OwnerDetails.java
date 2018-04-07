@@ -9,12 +9,12 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class OwnerDetails {
 
-    private String name;
-    private String email;
-    private String hotel_name;
-    private String hotel_address;
-    private String opening_time;
-    private String ending_time;
+    public String name;
+    public String email;
+    public String hotel_name;
+    public String hotel_address;
+    public String opening_time;
+    public String ending_time;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)

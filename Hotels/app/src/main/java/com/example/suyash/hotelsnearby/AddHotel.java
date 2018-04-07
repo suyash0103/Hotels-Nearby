@@ -2,6 +2,7 @@ package com.example.suyash.hotelsnearby;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,7 @@ public class AddHotel extends AppCompatActivity {
                 // Creating new user node, which returns the unique key value
                 // new user node would be /users/$userid/
                 String userId = databaseReference.push().getKey();
+                Log.v("AAAAAAAAAAAAAA", userId);
 
                 // creating user object
                 OwnerDetails ownerDetails = new OwnerDetails(MainActivity.email_id, name.getText().toString(), address.getText().toString(), open_time.getText().toString(), close_time.getText().toString());
