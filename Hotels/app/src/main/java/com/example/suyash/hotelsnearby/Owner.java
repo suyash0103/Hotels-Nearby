@@ -19,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -53,7 +55,7 @@ public class Owner extends AppCompatActivity  {
 
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-        FirebaseDatabase database;
+        final FirebaseDatabase database;
         DatabaseReference hotelRef;
 
         database = FirebaseDatabase.getInstance();
@@ -71,6 +73,11 @@ public class Owner extends AppCompatActivity  {
                         Log.v("In try", "In try");
                         String name = datas.child("hotel_name").getValue().toString();
                         Log.v("AAAAAAAAAAAAAAAAA", name);
+                        String hotel_address = datas.child("hotel_address").getValue().toString();
+                        String ending_time = datas.child("ending_time").getValue().toString();
+                        String opening_time = datas.child("opening_time").getValue().toString();
+                        OwnerDetails obj = new OwnerDetails(MainActivity.email_id, name, hotel_address, ending_time, opening_time);
+                        ownerDetails.add(obj);
                     }
                     catch (Exception e)
                     {
@@ -84,6 +91,23 @@ public class Owner extends AppCompatActivity  {
 
             }
         });
+
+        OwnersAdapter ownersAdapter= new OwnersAdapter(Owner.this, ownerDetails);
+
+        // finding the listView and setting the adapter to it
+        ListView listView = (ListView) findViewById(R.id.owner_hotels);
+        listView.setAdapter(ownersAdapter);
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+//                Log.v("SSSSSSSSSSSSSS", "SSSSSSSSSSSS");
+//                Hotel hotel = (Hotel) parent.getItemAtPosition(position);
+//
+//                Intent intent = new Intent(User.this, HotelDetails.class);
+//                intent.putExtra("Hotel", hotel);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 

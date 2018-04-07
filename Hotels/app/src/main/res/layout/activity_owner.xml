@@ -7,17 +7,12 @@
     android:orientation="vertical"
     tools:context="com.example.suyash.hotelsnearby.Owner">
 
-    <LinearLayout
+
+    <ListView
+        android:id="@+id/owner_hotels"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+    </ListView>
 
-
-        <ListView
-            android:id="@+id/hotels"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </ListView>
-
-    </LinearLayout>
 
 </LinearLayout>
